@@ -1,0 +1,42 @@
+<div fxLayout.gt-xs="row" fxLayout="column" class="h-100">
+
+  <div fxFlex="fill" fxLayout="column" fxLayoutAlign="space-between" style="padding: 15px; height: 100%;">
+
+    <div fxFlex="fill" style="overflow-y: scroll; max-height: 85vh" class="w-100" #messagesBox>
+
+      <div *ngFor="let message of messages" fxLayout="row" [ngClass]="{'highlighted': message.message.includes(this.getLoggedUsername())}">
+        <span class="mat-primary">
+          [{{message.date | date: 'mediumTime'}}]
+        </span>
+        <span fxFlexOffset="3px"
+              [ngClass]="{'text-warn': message.username === 'SYSTEM', 'text-primary': message.username !== 'SYSTEM'}"
+        >
+          {{message.username}}
+        </span>:
+        <span fxFlexOffset="5px">
+          {{message.message}}
+        </span>
+      </div>
+    </div>
+
+    <form #messageForm="ngForm" (ngSubmit)="send(messageForm)" fxFlex="5" fxLayout="row" fxLayoutAling="end end">
+      <div fxFlex="90" fxLayout="row">
+        <input name="message" fxFlex="100" [(ngModel)]="newMessage" id="message" placeholder="Type something..." minlength="1" maxlength="200"
+               ngModel required #message="ngModel" autocomplete="off">
+      </div>
+      <button type="submit" mat-raised-button color="accent" fxFlex="10">
+        Send
+      </button>
+    </form>
+  </div>
+
+  <mat-card fxFlex="20" style="padding: 15px" fxLayout="column">
+    <span class="mat-headline">Logged users</span>
+    <div class="background-white" fxFlex="100" fxLayout="column" style="overflow-y: scroll">
+
+      <mat-card *ngFor="let username of users" style="margin: 7px; cursor: pointer" (dblclick)="selectUser(username)">
+        <span>{{username}}</span> <span *ngIf="'@' + username === this.getLoggedUsername()"> (me) </span>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>

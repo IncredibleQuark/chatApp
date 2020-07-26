@@ -1,0 +1,31 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="h-100">
+
+  <mat-card>
+    <div fxLayout="row" fxLayoutAlign="start center" style="padding: 14px 0">
+      <mat-card-title>Enter chat app</mat-card-title>
+    </div>
+
+    <mat-card-content>
+      <mat-form-field style="min-width: 300px">
+        <mat-label>Username</mat-label>
+        <input name="usernameField" id="usernameField" matInput [(ngModel)]="username" #usernameField="ngModel" minlength="3" maxlength="30" required>
+      </mat-form-field>
+      <div *ngIf="usernameField.errors && submitted">
+        <mat-error *ngIf="usernameField.errors.required">
+          <div>Username can't be empty</div>
+        </mat-error>
+        <mat-error *ngIf="usernameField.errors.minlength">
+          <span>Username has to be at least 3 characters long</span>
+        </mat-error>
+        <mat-error *ngIf="usernameField.errors.maxlength">
+          <span>Username can be up to 30 characters long</span>
+        </mat-error>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" class="w-100" style="margin-bottom: 14px" (click)="login(usernameField)">
+        Confirm
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
