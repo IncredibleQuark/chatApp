@@ -39,4 +39,8 @@ export class SocketService {
     this.socket.emit('new message', message);
   }
 
+  public disconnect(): void {
+    this.socket.disconnect();
+  }
+
 }

@@ -1,12 +1,12 @@
 <div fxLayout="column" fxLayoutAlign="center center" class="h-100">
 
   <mat-card>
-    <div fxLayout="row" fxLayoutAlign="start center" style="padding: 14px 0">
+    <div fxLayout="row" fxLayoutAlign="start center" class="m-b-14">
       <mat-card-title>Enter chat app</mat-card-title>
     </div>
 
     <mat-card-content>
-      <mat-form-field style="min-width: 300px">
+      <mat-form-field class="m-w-300">
         <mat-label>Username</mat-label>
         <input name="usernameField" id="usernameField" matInput [(ngModel)]="username" #usernameField="ngModel" minlength="3" maxlength="30" required>
       </mat-form-field>
@@ -23,7 +23,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="accent" class="w-100" style="margin-bottom: 14px" (click)="login(usernameField)">
+      <button mat-raised-button color="accent" class="w-100 m-b-14" (click)="login(usernameField)">
         Confirm
       </button>
     </mat-card-actions>

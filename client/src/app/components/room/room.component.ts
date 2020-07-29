@@ -33,8 +33,9 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
     );
 
     this.usersSubscription = this.socketService.updateUserList().subscribe((users) => {
-      this.users = users;
-    });
+        this.users = users;
+      }, err => console.warn(err)
+    );
 
   }
 
@@ -78,7 +79,12 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public scrollToBottom(): void {
-    this.messagesBox.nativeElement.scrollTop = this.messagesBox.nativeElement.scrollHeight + 100;
+    this.messagesBox.nativeElement.scrollTop = this.messagesBox.nativeElement.scrollHeight;
+  }
+
+  public disconnect(): void {
+    localStorage.removeItem('username');
+    this.socketService.disconnect();
   }
 
 }

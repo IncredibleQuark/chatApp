@@ -1,8 +1,8 @@
 <div fxLayout.gt-xs="row" fxLayout="column" class="h-100">
 
-  <div fxFlex="fill" fxLayout="column" fxLayoutAlign="space-between" style="padding: 15px; height: 100%;">
+  <div fxFlex="fill" fxLayout="column" fxLayoutAlign="space-between" class="room-container">
 
-    <div fxFlex="fill" style="overflow-y: scroll; max-height: 85vh" class="w-100" #messagesBox>
+    <div fxFlex="fill"  class="w-100 chat-container" #messagesBox>
 
       <div *ngFor="let message of messages" fxLayout="row" [ngClass]="{'highlighted': message.message.includes(this.getLoggedUsername())}">
         <span class="mat-primary">
@@ -30,11 +30,11 @@
     </form>
   </div>
 
-  <mat-card fxFlex="20" style="padding: 15px" fxLayout="column">
+  <mat-card fxFlex="20" class="p-15" fxLayout="column">
     <span class="mat-headline">Logged users</span>
     <div class="background-white" fxFlex="100" fxLayout="column" style="overflow-y: scroll">
 
-      <mat-card *ngFor="let username of users" style="margin: 7px; cursor: pointer" (dblclick)="selectUser(username)">
+      <mat-card *ngFor="let username of users" class="user-box" (dblclick)="selectUser(username)">
         <span>{{username}}</span> <span *ngIf="'@' + username === this.getLoggedUsername()"> (me) </span>
       </mat-card>
     </div>
