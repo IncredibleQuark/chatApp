@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <form #messageForm="ngForm" (ngSubmit)="send(messageForm)" fxFlex="5" fxLayout="row" fxLayoutAling="end end">
+    <form #messageForm="ngForm" (ngSubmit)="send(messageForm)" fxFlex="5" fxLayout="row" class="chat-form">
       <div fxFlex="90" fxLayout="row">
         <input name="message" fxFlex="100" [(ngModel)]="newMessage" id="message" placeholder="Type something..." minlength="1" maxlength="200"
                ngModel required #message="ngModel" autocomplete="off">

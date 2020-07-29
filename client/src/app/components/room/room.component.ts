@@ -3,6 +3,7 @@ import {SocketService} from '../../services/socketService/socket.service';
 import {ISocketMessage} from '../../models/ISocketMessage';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-room',
@@ -19,7 +20,7 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
   private messagesSubscription: Subscription;
   private usersSubscription: Subscription;
 
-  constructor(private readonly socketService: SocketService) {
+  constructor(private readonly socketService: SocketService, private router: Router) {
   }
 
   public ngOnInit(): void {
@@ -80,11 +81,6 @@ export class RoomComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public scrollToBottom(): void {
     this.messagesBox.nativeElement.scrollTop = this.messagesBox.nativeElement.scrollHeight;
-  }
-
-  public disconnect(): void {
-    localStorage.removeItem('username');
-    this.socketService.disconnect();
   }
 
 }
